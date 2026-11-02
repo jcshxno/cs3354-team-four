@@ -18,7 +18,7 @@ CE/CS/SE 3354 · Software Engineering · Fall 2026
 | **Team member**  | **NetID**     | **GitHub username** |
 | ---------------- | ------------- | ------------------- |
 | **Joshua Kokes** | **dal924398** | **KokesJosh**       |
-|**Teddy Byrne**   | **mmb180000** | **mmb-180000**      |
+|**Teddy Byrne**   | **mmb180000** | **mmb-utdallas**    |
 |                  |               |                     |
 |                  |               |                     |
 |                  |               |                     |
