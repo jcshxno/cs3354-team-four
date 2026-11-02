@@ -9,25 +9,22 @@ CE/CS/SE 3354 · Software Engineering · Fall 2026
 
 | **Team**                       | Team 04, section .005                                  |
 | ------------------------------ | ------------------------------------------------------ |
-| **Document version**           | 1.0 (baseline for P2; grows from your P1 version 0.x)  |
-| **Date**                       | **11/1/2026**                                          |
+| **Document version**           | 1.0                                                    |
+| **Date**                       | 11/1/2026                                              |
 | **Repository URL**             | <https://github.com/sirfindcent/cs3354-team-four>      |
 | **Git tag for this milestone** | p2 (points at the commit that contains this exact PDF) |
 | **Submitted on Canvas by**     | Teddy Byrne                                            |
 
 | **Team member**  | **NetID**     | **GitHub username** |
 | ---------------- | ------------- | ------------------- |
-| **Joshua Kokes** | **Dal924398** | **KokesJosh**       |
-|                  |               |                     |
+| **Joshua Kokes** | **dal924398** | **KokesJosh**       |
+|**Teddy Byrne**   | **mmb180000** | **mmb-180000**      |
 |                  |               |                     |
 |                  |               |                     |
 |                  |               |                     |
 |                  |               |                     |
 |                  |               |                     |
 
-CS 3354 · P2 Analysis and High-Level Design · Template | Page 1
-
-CE/CS/SE 3354 · Software Engineering · Fall 2026
 
 **HOW TO USE THIS TEMPLATE**
 
@@ -59,9 +56,7 @@ P2 is analysis and high-level design. At this milestone we are NOT asking for:
 
 **design patterns from the Gang of Four catalog, ATAM or utility trees** (not required; do not spend your time there)
 
-Work placed in the wrong milestone is not credited. Spend the time on sections 4 to 9. CS 3354 · P2 Analysis and High-Level Design · Template | Page 2
-
-CE/CS/SE 3354 · Software Engineering · Fall 2026
+Work placed in the wrong milestone is not credited. Spend the time on sections 4 to 9.
 
 **0 Revision History, Contribution Record and Changes Since P1**
 
@@ -69,7 +64,7 @@ All three tables below are graded. The contribution record carries the individua
 
 | **Version** | **Date** | **Author** | **Summary of change**                             |
 | ----------- | -------- | ---------- | ------------------------------------------------- |
-| 0.x         |          |            | P1 baseline (copy your last P1 row)               |
+| 0.1         | 10/18/26 |            | Initial baseline for P1.                          |
 | 1.0         |          |            | P2 baseline: analysis and high-level design added |
 |             |          |            |                                                   |
 
@@ -95,10 +90,6 @@ All three tables below are graded. The contribution record carries the individua
 
 Every member appears with a distinguishable contribution. Two rows with identical wording are marked as vague claims. If a member did not contribute, write that plainly in their row rather than leaving it blank or covering for them.
 
-CS 3354 · P2 Analysis and High-Level Design · Template | Page 3
-
-CE/CS/SE 3354 · Software Engineering · Fall 2026
-
 **0.2 Changes since the P1 baseline**
 
 | **Change**<br><br>**ID** | **What changed (IDs**<br><br>**affected)** | **Why (P1 feedback, new finding, spike result)** | **Knock-on effect** | **Agreed on** |
@@ -119,13 +110,182 @@ Budget: half a page.
 
 CH-02 · QR-02 rewritten as quality-attribute scenario QAS-01 · Why: P1 feedback said "fast enough" had no response measure · Knock-on: ADR-02 now cites QAS-01 · Agreed 30 Oct.
 
-CS 3354 · P2 Analysis and High-Level Design · Template | Page 4
+**1 Introduction**
 
-CE/CS/SE 3354 · Software Engineering · Fall 2026
+**1.1 Purpose of this document and of the system**
 
-**1 to 3 Introduction, Overall Description and Requirements (carried forward)**
+This document and its contents hereafter are the project proposal and specifications for North Star Navigation, a platform for navigating the UTD campus. This document is intended to be submitted to Professor Seker and his TAs for review of the feasibility of the project and the quality of the proposal.
 
-**GUIDANCE: DELETE THIS BOX BEFORE SUBMITTING**
+North Star Navigation is primarily targeted towards any person on the UT Dallas campus. The current UT Dallas campus map is poor in its navigational aid as it gives few options for routes, does not offer navigation to specific rooms, and is often time inaccurate. This can lead to students getting lost or arriving in areas later than expected. North Star Navigation alleviates those issues by providing multiple routes to a user that they can choose based on their preferred arrival time and scenery with the inclusion of the interior navigation of every building.
+
+**1.2 Scope**
+
+| **In scope — we will build this**                                                                                                    | **Out of scope — we will not; see box below table for why** |
+| ------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------- |
+| Website that provides a map of UTD Campus                                                                                            | User accounts                                               |
+| Locations that will be included: UTD Buildings and their indoor room layout, Parking Lots, Bus Stops, Northside, and the Silver Line | Live parking space feed                                     |
+| Active Routing System between Location & Destination                                                                                 | Live weather report                                         |
+| Filtering of Buildings in/out of Routes                                                                                              | Time-dependent event tracking                               |
+| Building information provided: name, picture of building                                                                             | DART system information                                     |
+
+Out Of Scope:
+
+User accounts: Having user accounts would add privacy concerns and require negotiating with UTD's IT department. We can't justify that amount of time relative to how much functionality an account system would provide.
+
+Live parking space feed: This is a large enough task to be its own project. We can't justify that amount of time and effort for what would be a tertiary feature.
+
+Live weather report: Weather apps are plentiful and often come preinstalled on mobile devices. Developing our own would be redundant.
+
+DART system information: DART has a dedicated app for tickets, route planning, etc. Developing our own would be redundant.
+
+Time-dependent event tracking: A log of events taking place on campus requires active upkeep. Not all events that can impede traffic are announced ahead of time, and trying to accommodate around them as they pop up adds a real-time functionality that becomes unwieldy.
+
+**1.3 Definitions, acronyms and abbreviations**
+
+| **Term or abbreviation** | **Meaning as used in this project**                                                                          |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| UTD                      | The University of Texas at Dallas                                                                            |
+| ECSW                     | School of Engineering and Computer Science - West                                                            |
+| ECSS                     | School of Engineering and Computer Science - South                                                           |
+| ECSN                     | School of Engineering and Computer Science - North                                                           |
+| ATEC                     | Edith O' Donnell Arts & Technology Building                                                                  |
+| CC, CCH                  | Canyon Creek Heights                                                                                         |
+| CCHN                     | Canyon Creek Heights North                                                                                   |
+| CCHS                     | Canyon Creek Heights South                                                                                   |
+| UV                       | University Village                                                                                           |
+| Northside                | Northside Apartments                                                                                         |
+| Waterview                | Waterview Parkway                                                                                            |
+| PS1, PS2, PS3, etc.      | Parking Structure 1, Parking Structure 2, Parking Structure 3, etc.                                          |
+| NOTE:                    | More abbreviations should be added later to account for all of the commonly shorthanded locations on campus. |
+
+**1.4 References**
+
+\[R1\] UTD Campus Map
+
+**2 Overall Description**
+
+**2.1 Product perspective and context**
+
+Diagram: see file "2-1_Boundary_Diagram.png"
+
+The system boundary includes North Star Navigation because it is responsible for generating campus routes, estimating travel times, and applying route preferences. Students, visitors, and faculty are outside the system because they use the application by entering a starting location, destination, and route preferences, then receiving routes and estimated travel times. The UTD Campus Map or other campus location data is also outside the system because North Star Navigation depends on external information about buildings, paths, and locations rather than creating all that data itself.
+
+This boundary keeps the project focused on campus navigation and routing instead of taking responsibility for external campus data sources.
+
+**2.2 Stakeholders and how you reached them**
+
+| **Stakeholder** | **Role in relation to the system** | **What they need from it** | **How you learned this**                                                             |
+| --------------- | ---------------------------------- | -------------------------- | ------------------------------------------------------------------------------------ |
+| Students        | The main users/clientele           | Estimated travel times     | This clientele is the group the system will be developed for.                        |
+| Visitors        | Secondary users                    | Estimated travel times     | Alongside existing students, campus visitors will need to know where they are going. |
+
+**2.3 User characteristics**
+
+| Students: The users know how to use navigation apps, basic inputs, understand map symbols/ key. Users cannot be expected to know building nicknames, internal layouts, nor room numbering.                                                                                                                                                                                                    |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Visitors: Visitors can include highschoolers, transfer student touring the school, and anyone else having a temporary stay at the University. Visitors should know basic map symbols as the minimum. Since they are visiting, they are not expected to know the main building locations, parking, facilities (Recreation Center and Student Union), building nicknames, nor internal layouts. |
+
+**2.4 Constraints**
+
+No user accounts: UTD IT department, adds lead time
+
+**2.5 Assumptions and dependencies**
+
+| **#** | **Assumption or dependency**                                                                                                                         | **What breaks if it does not hold**                                                                                                                           |
+| ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| A1    | Dependency: The project will have access to reliable location data for UTD buildings, paths, entrances, parking lots, and other supported locations. | If the location data is missing or inaccurate, the routing system may generate incorrect routes, or we may have to reduce the numbers of locations supported. |
+| A2    | Assumption: Travel-time estimates can be calculated using route distance and walking speed.                                                          | If actual walking times vary too much from the estimate, the travel-time feature may not be accurate enough and would need additional calibration or data.    |
+| A3    | Assumption: Building and paths used by generated routes will normally be accessible when students use the system.                                    | If a building entrance or path is closed, a generated route could become unusable, and the system would need an alternate route.                              |
+
+**2.6 Feasibility summary**
+
+| **Feasibility gate** | **Verdict**                     | **Evidence behind the verdict**                                                                                                                                                                                                                                                          |
+| -------------------- | ------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Technical            | Feasible with some risk         | The core system is a web-based campus map with route generation and travel time estimates. The current working UTD campus map already **shows** that campus routing is **technically possible**, and our first prototype is limited to ECSW and one nearby parking lot before expanding. |
+| Operational          | Feasible                        | The system will run as a **website** and will not require user accounts. Users only need to select a starting location, destination, and optional route preferences, which keeps the system **simple** to operate.                                                                       |
+| Schedule             | Feasible if scope stays limited | The project is planned in **small iterations**: first ECSW and one parking lot, then the ECS area, then one longer cross-campus route. More complex features such as full indoor navigation can be **postponed** if needed.                                                              |
+| Economic / resource  | Feasible                        | The project does not require physical equipment or paid infrastructure for the initial version. The **main resources** are team development time, campus location data, and standard web-development tools.                                                                              |
+
+**3 Specific Requirements**
+
+**3.1 Functional requirements**
+
+| **ID** | **Requirement — one "shall" sentence**                                                               | **Priority** | **Source**          | **Acceptance criterion**                                                          |
+| ------ | ---------------------------------------------------------------------------------------------------- | ------------ | ------------------- | --------------------------------------------------------------------------------- |
+| FR-02  | The system shall allow a user to select a starting location from the supported campus locations.     | MUST         | Students / Visitors | A tester can select a valid destination and see it accepted by the system.        |
+| FR-03  | The system shall generate at least one route between the selected starting location and destination. | MUST         | Students / Visitors | A tester can choose two supported locations and receive a route connecting them.  |
+| FR-04  | The system shall display an estimated travel time for each generated route.                          | MUST         | Students / Visitors | A tester can generate a route and see an estimated travel time displayed.         |
+| FR-05  | The system shall display an estimated travel time for each generated route.                          | MUST         | Students / Visitors | A tester can generate a route and see its estimated travel time                   |
+| FR-06  | The system shall allow a user to apply route preferences when generating a route.                    | SHOULD       | Project Scope       | A tester can select at least one route preference and generate a route using it.  |
+| FR-07  | The system shall allow a user to avoid selected buildings or paths when an alternative route exists. | SHOULD       | Project Scope       | A tester can exclude a supported building or path and receive an alternate route. |
+| FR-08  | The system shall display basic information for supported campus locations.                           | SHOULD       | Project Scope       | A tester can select a supported location and view its available information.      |
+
+**3.2 Quality requirements**
+
+| **ID** | **Requirement — with threshold, condition and method**                                                                                             | **Priority** | **Source**          | **How it will be verified**                                                                       |
+| ------ | -------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ------------------- | ------------------------------------------------------------------------------------------------- |
+| QR-01  | The system shall display a generated route within **3 seconds** after the user selects a valid starting location and destination under normal use. | MUST         | Students / Visitors | Measure the response time for multiple route requests and confirm they complete within 3 seconds. |
+| QR-02  | The system shall display travel-time estimates within **20% of the measured walking time** for tested campus routes.                               | SHOULD       | Students / Visitors | Walk selected test routes, record the actual times, and compare them with the system estimates.   |
+| QR-03  | The system shall successfully generate a route for at least **95% of valid route requests** between supported locations.                           | MUST         | Students / Visitors | Test a set of valid origin-destination pairs and calculate the percentage that return a route.    |
+| QR-04  | The system shall allow a first-time user to generate a route in **3 steps or fewer** after opening the map.                                        | SHOULD       | Students / Visitors | Give the system to a first-time user and count the number of actions needed to generate a route.  |
+
+**3.3 Constraint requirements**
+
+| **ID** | **Constraint — one sentence**                                                                                                                                            | **Source**    | **Why it cannot be negotiated**                                                                       |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------- | ----------------------------------------------------------------------------------------------------- |
+| CON-01 | The system shall operate **without requiring user accounts**.                                                                                                            | Project scope | User accounts are explicitly outside the project scope and would add privacy and authentication work. |
+| CON-02 | The system shall use **existing UTD campus/location data or other approved external location data** rather than requiring the team to manually survey the entire campus. | Project scope | The project depends on existing location information to stay feasible within the project schedule.    |
+
+**3.4 Initial use cases**
+
+Diagram: see file "3-4_Use_Case_Diagram.png"
+
+UC-01 Find Route
+
+| **Field**                                          | **Content**                                                                                                                                                                                                                                                                                                                  |
+| -------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Identifier and name                                | **UC-01 Find Route**                                                                                                                                                                                                                                                                                                         |
+| Primary actor                                      | Campus User                                                                                                                                                                                                                                                                                                                  |
+| Supporting actors                                  | UTD Campus Map / Campus Location Data                                                                                                                                                                                                                                                                                        |
+| Preconditions — what must be true before it starts | The system has access to supported campus location data.                                                                                                                                                                                                                                                                     |
+| Trigger — what starts it                           | The user selects a starting location and destination and requests a route.                                                                                                                                                                                                                                                   |
+| Main success scenario — numbered steps             | 1\. The user selects a starting location.<br><br>2\. The user selects a destination.<br><br>3\. The system retrieves the needed campus location data.<br><br>4\. The system generates a valid route.<br><br>5\. The system calculates the estimated travel time. 6. The system displays the route and estimated travel time. |
+| Alternative and exception flows                    | If no valid route exists, the system informs the user. If required location data is unavailable, the system informs the user that routing cannot be completed.                                                                                                                                                               |
+| Postconditions — what is true when it succeeds     | The user is shown a valid route and its estimated travel time.                                                                                                                                                                                                                                                               |
+| Requirements realized                              | FR-01, FR-02, FR-03, FR-04, FR-05                                                                                                                                                                                                                                                                                            |
+
+UC-02 Apply Route Preferences
+
+| **Field**                                          | **Content**                                                                                                                                                                                                                                                                                                         |
+| -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Identifier and name                                | UC-02 Apply Route Preferences.                                                                                                                                                                                                                                                                                      |
+| Primary actor                                      | Campus User                                                                                                                                                                                                                                                                                                         |
+| Supporting actors                                  | None                                                                                                                                                                                                                                                                                                                |
+| Preconditions — what must be true before it starts | The user has selected a valid starting location and destination.                                                                                                                                                                                                                                                    |
+| Trigger — what starts it                           | The user selects one or more available route preferences.                                                                                                                                                                                                                                                           |
+| Main success scenario — numbered steps             | 1\. The user selects a route preference.<br><br>2\. The system applies the preference to the route search.<br><br>3\. The system generates a route that follows the preference when possible.<br><br>4\. The system calculates the travel time.<br><br>5\. The system displays the route and estimated travel time. |
+| Alternative and exception flows                    | If no route satisfies the selected preference, the system informs the user. The user may remove or change the preference and try again.                                                                                                                                                                             |
+| Postconditions — what is true when it succeeds     | The user receives a route that follows the selected preference when a valid route exists.                                                                                                                                                                                                                           |
+| Requirements realized                              | FR-06, FR-07                                                                                                                                                                                                                                                                                                        |
+
+**3.5 Requirements to use case traceability**
+
+| **Requirement ID** | **Use case(s) that realise it**                                                     | **If blank — why, and what you will do** |
+| ------------------ | ----------------------------------------------------------------------------------- | ---------------------------------------- |
+| FR-01              | **UC-01 Find Route**                                                                | \-                                       |
+| FR-02              | **UC-01 Find Route**                                                                | \-                                       |
+| FR-03              | **UC-01 Find Route**                                                                | \-                                       |
+| FR-04              | **UC-01 Find Route**                                                                | \-                                       |
+| FR-05              | **UC-01 Find Route**                                                                | \-                                       |
+| FR-06              | UC-02 Apply Route Preferences                                                       | \-                                       |
+| FR-07              | UC-02 Apply Route Preferences                                                       | \-                                       |
+| FR-08              | **UC-03 View Campus Location Information** and **UC-04 View Building/Room Details** | \-                                       |
+
+The matrix showed that all functional requirements are connected to at least one use case, so there are no unimplemented functional requirements.
+
+It also confirmed that each use case is supported by at least one functional requirement. No changes were required, but the matrix helped verify that the requirements and use cases are consistent with each other.
+
+**GUIDANCE: DELETE THIS BOX BEFORE SUBMITTING** ELEPHANT DELETE THIS SECTION START
 
 Paste your P1 sections 1, 2 and 3 here and bring them up to date. Keep their numbering and IDs.
 
@@ -137,9 +297,7 @@ Paste your P1 sections 1, 2 and 3 here and bring them up to date. Keep their num
 
 If nothing in a subsection changed, keep it and say so in one line under its heading ("Unchanged since v0.x").
 
-CS 3354 · P2 Analysis and High-Level Design · Template | Page 5
-
-CE/CS/SE 3354 · Software Engineering · Fall 2026
+ELEPHANT END
 
 **4 Use-Case Analysis**
 
@@ -179,13 +337,6 @@ _Copy the block below once for each use case in 4.1._
 | **Actor input / action** | **System response** |
 | ------------------------ | ------------------- |
 |                          | (0)                 |
-
-CS 3354 · P2 Analysis and High-Level Design · Template | Page 6
-
-CE/CS/SE 3354 · Software Engineering · Fall 2026
-
-| **Actor input / action** | **System response** |
-| ------------------------ | ------------------- |
 | (1)                      | (2)                 |
 | (3)                      | (4)                 |
 | (5)                      | (6)                 |
@@ -221,10 +372,6 @@ UC-02 Find an Open Space · Primary actor: Driver · External system: Lot Sensor
 
 A1 at step (2): no permitted lot has an open space · the system shows the nearest lot with expected turnover and the visitor option · ends.
 
-CS 3354 · P2 Analysis and High-Level Design · Template | Page 7
-
-CE/CS/SE 3354 · Software Engineering · Fall 2026
-
 **4.3 Self-review log**
 
 | **Use case** | **Check from the Lesson 13 review checklist** | **Defect found** | **How it was fixed** |
@@ -237,9 +384,6 @@ CE/CS/SE 3354 · Software Engineering · Fall 2026
 
 Run the review checklist from Lesson 13 on each expanded use case before anyone draws a diagram, and record what each check found, including any defects you fixed. Report honestly; a clean result is acceptable when it is true. Budget: a quarter of a page.
 
-CS 3354 · P2 Analysis and High-Level Design · Template | Page 8
-
-CE/CS/SE 3354 · Software Engineering · Fall 2026
 
 **5 Analysis Models**
 
@@ -270,9 +414,6 @@ Budget: one page including the diagram.
 
 Lot (name, zone, capacity) 1 ── 0..\* Space (number, type) ; Space 1 ── 0..\* OccupancyReading (time, state) ; Permit (type, valid until) \* ── 1..\* Lot "is valid in" ; Building (name) \* ── \* Lot "is near" (walking time).
 
-CS 3354 · P2 Analysis and High-Level Design · Template | Page 9
-
-CE/CS/SE 3354 · Software Engineering · Fall 2026
 
 **5.2 Object interaction models**
 
@@ -313,9 +454,6 @@ Budget: one to one and a half pages per use case.
 
 Step 2 · Subject: LotFinder · Action: asks for the lots the permit allows · Data: permit type, destination · Object acted upon: PermitRules.
 
-CS 3354 · P2 Analysis and High-Level Design · Template | Page 10
-
-CE/CS/SE 3354 · Software Engineering · Fall 2026
 
 **5.3 Consistency cross-check**
 
@@ -368,9 +506,6 @@ QAS-01 · Performance · Stimulus: 400 drivers request lot status during the 7:4
 |                      |                       |                   | Rejected    |
 |                      |                       |                   | Rejected    |
 
-CS 3354 · P2 Analysis and High-Level Design · Template | Page 12
-
-CE/CS/SE 3354 · Software Engineering · Fall 2026
 
 **GUIDANCE: DELETE THIS BOX BEFORE SUBMITTING**
 
@@ -400,10 +535,6 @@ _Figure 6.3 Component diagram: components, provided and required interfaces, ext
 Show external systems outside the boundary. Name interfaces by what they offer ("OccupancyQuery"), not by operation signatures, which are Chapter 9.
 
 Budget: one page including the diagram.
-
-CS 3354 · P2 Analysis and High-Level Design · Template | Page 13
-
-CE/CS/SE 3354 · Software Engineering · Fall 2026
 
 **6.4 Deployment view**
 
@@ -437,9 +568,6 @@ Budget: one page including the diagram.
 
 Every class and interaction object from section 5 lands in exactly one component, or the note says why it was split, merged or left to an external system. This table is how the reader sees that the architecture realizes the analysis rather than replacing it. Budget: a quarter of a page.
 
-CS 3354 · P2 Analysis and High-Level Design · Template | Page 14
-
-CE/CS/SE 3354 · Software Engineering · Fall 2026
 
 **6.6 Design principles applied**
 
@@ -456,9 +584,6 @@ CE/CS/SE 3354 · Software Engineering · Fall 2026
 
 One line per principle, pointing at something concrete. A principle you cannot point at in your own design should be left blank and explained in one sentence, not filled with a definition from the slides. Budget: a third of a page.
 
-CS 3354 · P2 Analysis and High-Level Design · Template | Page 15
-
-CE/CS/SE 3354 · Software Engineering · Fall 2026
 
 **7 Design Rationale**
 
@@ -496,15 +621,10 @@ ADR-02 · Push occupancy changes to clients rather than polling · Context: QAS-
 |                     |                        |                   | ADR             |
 |                     |                        |                   | ADR             |
 
-CS 3354 · P2 Analysis and High-Level Design · Template | Page 16
-
-CE/CS/SE 3354 · Software Engineering · Fall 2026
 
 **GUIDANCE: DELETE THIS BOX BEFORE SUBMITTING**
 
-One row per real trade-off. This is the table a reviewer reads first. Budget: a quarter of a page. CS 3354 · P2 Analysis and High-Level Design · Template | Page 17
-
-CE/CS/SE 3354 · Software Engineering · Fall 2026
+One row per real trade-off. This is the table a reviewer reads first. Budget: a quarter of a page.
 
 **8 Prototype Evidence: Architecture Spike**
 
@@ -530,9 +650,6 @@ The code, the measurement and a short README are committed to /spikes before the
 
 Budget: half a page.
 
-CS 3354 · P2 Analysis and High-Level Design · Template | Page 18
-
-CE/CS/SE 3354 · Software Engineering · Fall 2026
 
 **9 Traceability**
 
@@ -565,9 +682,6 @@ Budget: one page.
 
 An empty gap table is believable only if the matrix above is complete. Say what each gap means and what you did. Budget: a quarter of a page.
 
-CS 3354 · P2 Analysis and High-Level Design · Template | Page 19
-
-CE/CS/SE 3354 · Software Engineering · Fall 2026
 
 **10 Project Plan (updated; was P1 section 4) 10.1 Roles and working agreement**
 
@@ -603,16 +717,14 @@ State the repository URL, the folder layout (/docs/p2, /docs/p2/diagrams, /spike
 
 **Access:** the repository is public, or the instructor account announced on Canvas has read access before the deadline. A repository that cannot be opened at grading time cannot earn repository or contribution credit.
 
-CS 3354 · P2 Analysis and High-Level Design · Template | Page 20
 
-CE/CS/SE 3354 · Software Engineering · Fall 2026
+**10.5 Use of AI tools**
 
-**10.5 Use of AI tools in P2**
+| **Tool** | **What it was used for**                                                                                                                                | **Who used it**  | **How the output was checked**                                                                                                                          |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ChatGPT  | Helped brainstorm and review functional requirements, quality requirements, constraints, use cases, context diagrams, and wording for project sections. | Vincent Jonathan | The output was compared against the course slides/template, checked against the project scope, and manually revised before being added to the document. |
+| ChatGPT  | Assisted with drafting project milestones, repository conventions, and open questions.                                                                  | Christian Ermias | Reviewed against the assignment template and project requirements, then manually revised.                                                               |
 
-| **Member** | **Tool** | **What it was used for** | **What you checked or changed** |
-| ---------- | -------- | ------------------------ | ------------------------------- |
-|            |          |                          |                                 |
-|            |          |                          |                                 |
 
 **GUIDANCE: DELETE THIS BOX BEFORE SUBMITTING**
 
@@ -643,9 +755,6 @@ We declare this document, version 1.0, the baseline for P2. Sections 1 to 9 desc
 |                 |                           |          |
 |                 |                           |          |
 
-CS 3354 · P2 Analysis and High-Level Design · Template | Page 21
-
-CE/CS/SE 3354 · Software Engineering · Fall 2026
 
 **How P2 Is Marked**
 
@@ -662,12 +771,7 @@ _Delete this page and the next before submitting. 60 points: 48 for the shared t
 | **Traceability (section 9)**                                                                  | 4          | Every requirement realized by the analyzed use cases is traced through analysis classes to a component, and to the scenario or decision that shaped it where one exists. Every other MUST requirement reaches at least a component. Gaps are named, explained and acted on.                                                                                                                                    |
 | **Document quality**                                                                          | up to −3   | Deducted from the team points, not awarded: guidance, example or warning boxes left in, placeholders, sections out of order or renumbered, unreadable diagrams, or a document far beyond its length budget.                                                                                                                                                                                                    |
 
-CS 3354 · P2 Analysis and High-Level Design · Template | Page 22
-
-CE/CS/SE 3354 · Software Engineering · Fall 2026
-
-| **Criterion**                                                 | **Points** | **What full marks look like**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| ------------------------------------------------------------- | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+                                                                                                                                        
 | **Individual contribution**<br><br>**evidence (section 0.1)** | 12 each    | 12: owns specific sections or artifacts, with own commits or pull requests before the deadline and at least one review of a teammate's pull request. 9: specific ownership and own commits, but thin or no review evidence. 6: specific claim with indirect evidence only (issues owned, or work uploaded explicitly on the member's behalf). 4: specific claim with no repository evidence. 2: vague or duplicated claim. 0: no credited work. A member with no credited work at all (absent from the contribution record and with no commits) may also lose the team portion, because the syllabus does not allow credit for work completed by others. This applies to individual non-participation only, never to a whole team. |
 
 **WHERE P1 MARKS WERE LOST (DELETE THIS BOX BEFORE SUBMITTING)**
@@ -681,5 +785,3 @@ CE/CS/SE 3354 · Software Engineering · Fall 2026
 **Several members uploading different versions to Canvas.** One member submits. If more than one file is uploaded, the latest upload is the one graded.
 
 **Quality requirements with no number in them, and requirements whose source was still "pending". Work committed after the deadline.** It is not counted, even a few minutes after.
-
-CS 3354 · P2 Analysis and High-Level Design · Template | Page 23
